@@ -15,8 +15,8 @@ class User(db.Model, UserMixin):
 
   servers_owned = db.relationship('Server', back_populates='owner')
   servers_joined = db.relationship('Server', secondary=joined_servers, back_populates='users')
-  sent_messages = db.relationship('DirectMessage', back_populates='sender', foreign_keys=[DirectMessage])
-  received_messages = db.relationship('DirectMessage', back_populates='recipient', foreign_keys=[DirectMessage])
+  sent_messages = db.relationship('DirectMessage', back_populates='sender', foreign_keys=[DirectMessage.sender_id])
+  received_messages = db.relationship('DirectMessage', back_populates='recipient', foreign_keys=[DirectMessage.recipient_id])
 
 
   @property
