@@ -1,6 +1,6 @@
 from .db import db
 
-class DirectMessages(db.Models):
+class DirectMessage(db.Model):
     __tablename__ = 'direct_messages'
 
     id = db.Column(db.Integer, primary_key=True)
