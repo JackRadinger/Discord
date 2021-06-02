@@ -1,6 +1,10 @@
 from .db import db
 
-joined_servers = db.Table('joined_servers', db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True), db.Column('server_id', db.Integer, db.ForeignKey('servers.id'), primary_key=True))
+joined_servers = db.Table(
+    'joined_servers',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('server_id', db.Integer, db.ForeignKey('servers.id'), primary_key=True)
+)
 
 
 class Server(db.Model):
