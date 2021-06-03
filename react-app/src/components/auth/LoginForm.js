@@ -20,6 +20,22 @@ const LoginForm = () => {
     }
   };
 
+  const demo1Login = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+
+  const demo2Login = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo2@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -70,6 +86,8 @@ const LoginForm = () => {
                 <span className='login-form-register-span'>Need an account?</span>
                 <button className='login-form-register-link' onClick={() => history.push('/sign-up')}>Register</button>
               </div>
+              <button className='login-form-btn demo-btn' onClick={demo1Login}>Demo User 1</button>
+              <button className='login-form-btn demo-btn' onClick={demo2Login}>Demo User 2</button>
             </div>
           </form>
         </div>

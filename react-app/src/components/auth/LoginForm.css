@@ -103,3 +103,10 @@
     color: #7984f5;
     cursor: pointer;
 }
+
+.demo-btn {
+    margin-top: 8px;
+    width: 200px;
+    margin-right: 14px;
+}
+
