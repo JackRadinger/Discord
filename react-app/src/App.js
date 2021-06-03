@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import HomePage from './components/HomePage/index'
 import { authenticate } from "./store/session";
+import SplashPage from './components/SplashPage/index'
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -28,8 +29,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
