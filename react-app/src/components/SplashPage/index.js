@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './SplashPage.css';
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux"
+import discordLogo from './imgs/Discord-Logo.png'
+import disvoiceLogo from './imgs/Disvoice-Logo (3).png'
 
 
 
@@ -17,15 +19,33 @@ function SplashPage() {
             <div className='splash-wrapper'>
                 <div className='splash-image-container'>
                     <div className='splash-header-wrapper'>
-                        <div className='login-wrapper'>
-                            <button onClick={() => history.push('/login')} className="splash-login-btn">
-                            Login
-                            </button>
+                        <div className='logo-wrapper'>
+                            <img
+                            className='discord-logo'
+                            src={discordLogo}
+                            alt='discord logo'
+                            />
+                            <img
+                            className='disvoice-logo'
+                            src={disvoiceLogo}
+                            alt='disvoice logo'
+                            />
                         </div>
-                        <div className='sign-up-wrapper'>
-                            <button onClick={() => history.push('/sign-up')} className="splash-sign-up-btn">
-                            Sign Up
-                            </button>
+                        <div className='developer-links'>
+                            <a className='github-link' href='https://github.com/JackRadinger/Discord'>Github</a>
+                            <a className='linkedin-link' href='https://www.linkedin.com/in/jack-radinger-6b5349174/'>LinkedIn</a>
+                        </div>
+                        <div className='link-wrapper'>
+                            <div className='login-wrapper'>
+                                <button onClick={() => history.push('/login')} className="splash-login-btn">
+                                Login
+                                </button>
+                            </div>
+                            <div className='sign-up-wrapper'>
+                                <button onClick={() => history.push('/sign-up')} className="splash-sign-up-btn">
+                                Sign Up
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className="splash-image">
@@ -106,9 +126,18 @@ function SplashPage() {
                         />
                     </div>
                 </div>
-                <div>
-                    <h2>Random Info</h2>
-                    <div>More Random Info</div>
+                <div className="splash-info-container">
+                    <div className='splash-info'>
+                        <img
+                            className="splash-invite-img"
+                            src="https://discord.com/assets/c01c644bc9fa2a28678ae2f44969d248.svg"
+                            alt='Splash Content'
+                        />
+                        <div className='splash-invite-description'>
+                            <h2 className='invite-description-header'>An invite-only place with plenty of room to talk</h2>
+                            <div className='invite-desription-div'>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
