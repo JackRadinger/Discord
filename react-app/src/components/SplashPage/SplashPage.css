@@ -1,0 +1,232 @@
+
+.splash-image-container {
+    background-color: #2a5ee8;
+    overflow: hidden;
+    height: 600px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.splash-header-wrapper {
+    /* padding-top: 50px; */
+    margin: 30px;
+    background-color: #2a5ee8;
+    z-index: 1;
+}
+
+.splash-login-btn {
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    padding: 7px 16px;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.splash-login-btn:hover {
+    color: #7289da;
+    box-shadow: 0px 8px 10px rgba(68, 68, 68, 0.4);
+}
+
+
+.splash-sign-up-btn {
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    padding: 7px 16px;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.splash-sign-up-btn:hover {
+    color: #7289da;
+    box-shadow: 0px 8px 10px rgba(68, 68, 68, 0.4);
+}
+
+.splash-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 600px;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.backgroundImages {
+    position: absolute;
+    /* top: 0; */
+    left: 50%;
+}
+
+.stripe1-bgImage {
+    margin-left: -706px;
+}
+
+.stripe2-bgImage {
+    margin-left: -1074px;
+}
+
+.stripe3-bgImage {
+    margin-left: 46px;
+}
+
+.island-bgImage {
+    margin-left: 215px;
+    margin-top: 80px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 4800s;
+}
+
+.castle2-bgImage {
+    margin-top: 80px;
+    margin-left: -880px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 2400s;
+}
+
+.cloud-bgImage {
+    margin-left: -767px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 2400s;
+    bottom: 0;
+}
+
+.cloud2-bgImage {
+    margin-left: -767px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 2400s;
+    bottom: 0;
+}
+
+.cloud3-bgImage {
+    margin-left: -767px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 2400s;
+    bottom: 0;
+}
+
+.balloon-bgImage {
+    top: auto;
+    bottom: 0;
+    margin-left: -200px;
+    margin-bottom: -200px;
+    animation-name: shift-up;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 60s;
+}
+
+.bigCloud-bgImage {
+    margin-left: -767px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 2400s;
+    bottom: 0;
+}
+
+.diamond-bgImage {
+    margin-top: 114px;
+    margin-left: 182px;
+}
+
+.flyingShip-bgImage {
+    margin-left: -460px;
+    margin-top: 117px;
+    animation-name: shift-right;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-duration: 4800s;
+}
+
+.foregroundBuildings {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 23.5%;
+}
+
+.foregroundLeft {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    height: auto;
+    margin-left: -1300px;
+    transform: none;
+    z-index: 1;
+}
+
+.foregroundRight {
+    display: block;
+    bottom: 0;
+    left: 50%;
+    margin-left: 368px;
+    position: absolute;
+    z-index: 1;
+}
+
+@keyframes shift-right {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(8000px);
+    }
+}
+
+@keyframes shift-up {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-2000px);
+    }
+}
