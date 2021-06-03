@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -9,6 +10,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -31,34 +33,48 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
+    <>
+      <div className='login-page-wrapper'>
+        <div className='login-form-wrapper'>
+          <form className='login-form' onSubmit={onLogin}>
+            <h3 className='login-title'>Welcome back!</h3>
+            <div className='login-secondary-header'>We're so excited to see you again!</div>
+            <div className='login-errors'>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
+            <div className='form-input-fields'>
+              <div className='login-email-input-wrapper'>
+                <h5 className='login-email-label' htmlFor="email">Email</h5>
+                <input
+                  className='login-email-input'
+                  name="email"
+                  type="text"
+                  value={email}
+                  onChange={updateEmail}
+                />
+              </div>
+              <div className='login-password-input-wrapper'>
+                <h5 className='login-password-label' htmlFor="password">Password</h5>
+                <input
+                  className='login-password-input'
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={updatePassword}
+                />
+              </div>
+              <button className='login-form-btn' type="submit">Login</button>
+              <div className='login-form-register'>
+                <span className='login-form-register-span'>Need an account?</span>
+                <button className='login-form-register-link' onClick={() => history.push('/sign-up')}>Register</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    </>
   );
 };
 
