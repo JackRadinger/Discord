@@ -31,7 +31,7 @@
 // Reducer
 const initialState = {};
 
-const stockReducer = (state = initialState, action) => {
+const serverReducer = (state = initialState, action) => {
     let newerState;
     switch (action.type) {
         // case SET_STOCK:

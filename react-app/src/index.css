@@ -1,1 +1,9 @@
 /* TODO Add site wide styles */
+
+body {
+    margin: 0;
+}
+
+html {
+    font-family: "Ginto Nord","Whitney","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
