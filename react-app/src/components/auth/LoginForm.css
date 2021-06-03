@@ -89,6 +89,7 @@
     height: 44px;
     border: none;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .login-form-register-span {
@@ -108,5 +109,5 @@
     margin-top: 8px;
     width: 200px;
     margin-right: 14px;
+    cursor: pointer;
 }
-
