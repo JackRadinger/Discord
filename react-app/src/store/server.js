@@ -1,30 +1,29 @@
 
 //Action Verbs
 
-// const SET_STOCK = 'stock/setStock'
-
+const SET_SERVERS = 'server/setServers'
 
 
 //Action Creater
 
-// const setStocks = (stock) => {
-//     return {
-//         type: SET_STOCK,
-//         stock
-//     }
-// }
-
+const setServers = (servers) => {
+    return {
+        type: SET_SERVERS,
+        servers
+    }
+}
 
 
 
 //Thunk
-// export const getStockCompany = (symbol) => async (dispatch) => {
-//     const response = await fetch(`/api/stock/companyinfo/${symbol}`)
-//     if(response.ok) {
-//         const companyInfo = await response.json();
-//         dispatch(setStocks(companyInfo))
-//     }
-// }
+
+export const getUserServers = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/${userId}`)
+    if(response.ok) {
+        const servers = await response.json()
+        dispatch(setServers(servers))
+    }
+}
 
 
 
@@ -32,14 +31,14 @@
 const initialState = {};
 
 const serverReducer = (state = initialState, action) => {
-    let newerState;
+    let newState;
     switch (action.type) {
-        // case SET_STOCK:
-        //     newerState = { ... state }
-        //     newerState.currentStock = action.stock
 
-        //     return newerState
+        case SET_SERVERS:
+            newState = { ...state }
+            newState = action.servers
 
+            return newState
         default:
             return state;
     }

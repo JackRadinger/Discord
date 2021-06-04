@@ -1,0 +1,84 @@
+.create-server-form-container {
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.create-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sub-create-title-div {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.sub-create-title-2-div {
+    display: flex;
+    justify-content: center;
+}
+
+.create-title {
+
+}
+
+.sub-create-title {
+    font-size: 15px;
+}
+
+.sub-create-title-2 {
+    font-size: 15px;
+}
+
+.server-name-label{
+
+}
+
+.server-name-input {
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.server-picture-label {
+
+}
+
+.server-picture-input {
+    margin-bottom: 15px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.create-server-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-server-modal-exit {
+    padding: 7px;
+    width: 50px;
+    border: none;
+    background-color: #7289da;
+    border-radius: 6px;
+}
+
+.create-server-form-btn {
+    padding: 7px;
+    width: 70px;
+    border: none;
+    background-color: #7289da;
+    border-radius: 6px;
+}
