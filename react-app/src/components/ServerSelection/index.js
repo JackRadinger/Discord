@@ -11,7 +11,7 @@ import Modal from 'react-modal';
 const ServerSelection = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const servers = useSelector(state => state.server);
+  const servers = useSelector(state => state.server.servers);
   const history = useHistory();
   const [active, setActive] = useState('')
   const [openModal, setOpenModal] = useState(false);
@@ -25,35 +25,10 @@ const ServerSelection = () => {
     return <Redirect to="/login" />;
   }
 
+
   if(!servers.length) {
     return null
   }
-
-  const customStyles = {
-
-    overlay: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(255, 255, 255, 0.75)'
-    },
-    content: {
-      position: 'absolute',
-      top: '150px',
-      left: '300px',
-      right: '300px',
-      bottom: '300px',
-      border: '1px solid #ccc',
-      background: '#fff',
-      overflow: 'auto',
-      WebkitOverflowScrolling: 'touch',
-      borderRadius: '4px',
-      outline: 'none',
-      padding: '80px',
-    }
-  };
 
   function handleServerClick(serverId) {
     setActive(serverId)
@@ -92,7 +67,7 @@ const ServerSelection = () => {
       {openModal &&
         <>
           <div className='modal-container'>
-            <CreateServer />
+            <CreateServer setOpenModal={setOpenModal}/>
           </div>
         </>}
     </>

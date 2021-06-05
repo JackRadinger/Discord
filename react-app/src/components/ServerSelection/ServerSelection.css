@@ -7,6 +7,8 @@
     background-color: #202225;
     align-items: center;
     padding-top: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #2f3136 #202225;
 }
 
 .home-btn-wrapper {
@@ -80,15 +82,22 @@
     border-radius: 50%;
     align-items: center;
     font-size: 30px;
-    color: white;
+    color: #3ba55c;
     font-weight: 530;
     font-family:'Times New Roman', Times, serif;
     cursor: pointer;
     margin: 5px;
 }
 
+.create-server-div:hover {
+    border-radius: 25%;
+    color: white;
+    background-color: #3ba55c;
+}
+
 .create-active {
     border-radius: 25%;
+    color: white;
     background-color: #3ba55c;
 }
 

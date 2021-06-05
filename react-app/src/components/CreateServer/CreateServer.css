@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-bottom: 30px;
 }
 
 .create-title-container {
@@ -22,15 +23,21 @@
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;
+    color: #4f5660;
 }
 
 .sub-create-title-2-div {
     display: flex;
     justify-content: center;
+    color: #4f5660;
 }
 
 .create-title {
-
+    text-align: center;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 30px;
 }
 
 .sub-create-title {
@@ -42,24 +49,42 @@
 }
 
 .server-name-label{
-
+    font-size: 12px;
+    line-height: 16px;
+    color: #6a7480;
+    margin-bottom: 5px;
 }
 
 .server-name-input {
-    height: 25px;
-    border: 1px solid black;
+    height: 30px;
+    width: 275px;
+    border: 1px solid gray;
     border-radius: 3px;
+}
+
+.server-name-input:focus {
+    outline: none;
+    border: 1px solid #0067e0;
 }
 
 .server-picture-label {
-
+    font-size: 12px;
+    line-height: 16px;
+    color: #6a7480;
+    margin-bottom: 5px;
 }
 
 .server-picture-input {
-    margin-bottom: 15px;
-    height: 25px;
-    border: 1px solid black;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 275px;
+    border: 1px solid gray;
     border-radius: 3px;
+}
+
+.server-picture-input:focus {
+    outline: none;
+    border: 1px solid #0067e0;
 }
 
 .create-server-btn-container {
@@ -71,8 +96,9 @@
     padding: 7px;
     width: 50px;
     border: none;
-    background-color: #7289da;
-    border-radius: 6px;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .create-server-form-btn {
@@ -81,4 +107,5 @@
     border: none;
     background-color: #7289da;
     border-radius: 6px;
+    cursor: pointer;
 }

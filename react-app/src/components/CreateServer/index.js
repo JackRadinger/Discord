@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './CreateServer.css';
+import * as serverReducer from '../../store/server'
 // import './ServerPage.css'
 
-const CreateServer = () => {
+const CreateServer = ({setOpenModal}) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -20,11 +21,7 @@ const CreateServer = () => {
 
   const onCreate = async (e) => {
     e.preventDefault();
-    console.log(name)
-    console.log(picture)
-    // if (password === repeatPassword) {
-    //   await dispatch(signUp(username, email, password));
-    // }
+    await dispatch(serverReducer.createNewServer( name, picture, user.id ))
   };
 
   if (!user) {
@@ -44,7 +41,7 @@ const CreateServer = () => {
                 </div>
                 <div className='create-form-input-fields'>
                     <div className='server-name-input-wrapper'>
-                        <h5 className='server-name-label'>Server Name</h5>
+                        <h5 className='server-name-label'>SERVER NAME</h5>
                         <input
                             className='server-name-input'
                             type="text"
@@ -54,7 +51,7 @@ const CreateServer = () => {
                         />
                     </div>
                     <div className='server-picture-input-wrapper'>
-                        <h5 className='server-picture-label'>Picture Url</h5>
+                        <h5 className='server-picture-label'>PICTURE URL</h5>
                         <input
                             className='server-picture-input'
                             type="text"
@@ -64,7 +61,7 @@ const CreateServer = () => {
                         />
                     </div>
                     <div className='create-server-btn-container'>
-                        <button className='create-server-modal-exit'>Exit</button>
+                        <button className='create-server-modal-exit' onClick={() => setOpenModal(false)}>Back</button>
                         <button className='create-server-form-btn' type="submit">Create</button>
                     </div>
                 </div>
