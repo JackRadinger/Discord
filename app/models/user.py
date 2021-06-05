@@ -1,8 +1,10 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
 from .server import joined_servers
 from .direct_message import DirectMessage
+
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -11,7 +13,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  profilePicture = db.Column(db.String(255))
+  profilePicture = db.Column(db.String(255), default='https://www.online-tech-tips.com/wp-content/uploads/2019/09/discord.jpg.webp')
 
   servers_owned = db.relationship('Server', back_populates='owner')
   servers_joined = db.relationship('Server', secondary=joined_servers, back_populates='users')

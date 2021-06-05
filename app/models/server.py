@@ -14,7 +14,7 @@ class Server(db.Model):
     name = db.Column(db.String(50), nullable=False)
     serverPicture = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    invite_url = db.Column(db.String(25), nullable=False)
+    invite_url = db.Column(db.String(25))
 
     owner = db.relationship('User', back_populates='servers_owned')
     channels = db.relationship('Channel', cascade='all, delete-orphan', back_populates='server')
