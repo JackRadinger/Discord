@@ -1,11 +1,11 @@
-const SET_ACTIVE = 'server/setActive'
+const SET_ACTIVE_SERVER = 'server/setActiveServer'
 
 
 //Action Creater
 
-const setActive = (activePage) => {
+const setActiveServer = (activePage) => {
     return {
-        type: SET_ACTIVE,
+        type: SET_ACTIVE_SERVER,
         activePage
     }
 }
@@ -23,22 +23,21 @@ const setActive = (activePage) => {
 // }
 
 export const setActivePage = (page) => async (dispatch) => {
-    dispatch(setActive(page))
+    dispatch(setActiveServer(page))
 }
 
 
 
 // Reducer
-const initialState = {};
+const initialState = {'server': {}, 'channel': {}};
 
 const activeReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
 
-        case SET_ACTIVE:
+        case SET_ACTIVE_SERVER:
             newState = { ...state }
-            newState = action.activePage
-
+            newState.server = action.activePage
             return newState
         default:
             return state;

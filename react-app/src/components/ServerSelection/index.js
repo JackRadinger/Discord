@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './ServerSelection.css'
 import * as serverReducer from '../../store/server';
+import * as activeReducer from '../../store/active';
 import UserInfo from '../UserInfo/index';
 import discordLogo from '../SplashPage/imgs/Discord-Logo-Home.png'
 import CreateServer from '../CreateServer/index';
@@ -30,9 +31,10 @@ const ServerSelection = () => {
     return null
   }
 
-  function handleServerClick(serverId) {
-    setActive(serverId)
-    history.push(`/channels/@me/${serverId}`)
+  async function handleServerClick(server) {
+    setActive(server.id)
+    await dispatch(activeReducer.setActivePage(server))
+    history.push(`/channels/@me/${server.id}/${server.channels[0].id}`)
   }
 
   function handleHomeClick() {
@@ -55,7 +57,7 @@ const ServerSelection = () => {
         </div>
         {servers.map((server) => {
           return (
-            <div key={server.id} className={`nav-bar-server-icon ${server.id === active ? 'active': ''}`} onClick={() => handleServerClick(server.id)}>
+            <div key={server.id} className={`nav-bar-server-icon ${server.id === active ? 'active': ''}`} onClick={() => handleServerClick(server)}>
               {server.serverPicture ? <img className='server-picture' src={server.serverPicture} alt={server.name[0].toUpperCase()}></img> : <div>{server.name[0].toUpperCase()}</div>}
             </div>
           )
