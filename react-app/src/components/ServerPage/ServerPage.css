@@ -1,5 +1,4 @@
 .server-info-channel-container {
-    border: 1px solid green;
     height: 101vh;
     display: flex;
     flex-direction: column;
@@ -58,4 +57,41 @@
     justify-content: flex-start;
     justify-items: center;
     align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.channel-container:hover {
+    background-color: #40444b;
+    border-radius: 5px;
+    padding: 4px;
+    padding-top: 6px;
+}
+
+.channel-name-container {
+    display: flex;
+    justify-items: center;
+}
+
+.channel-name {
+    padding-left: 5px;
+}
+
+.server-settings {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    color: gray;
+}
+
+.server-settings-icon {
+    align-self: center;
+}
+
+.active-channel {
+    color: white;
+    background-color: #36393f;
+    padding: 5px;
+    padding-right: 10px;
 }

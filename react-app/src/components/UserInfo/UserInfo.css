@@ -1,3 +1,46 @@
 .user_info__container {
-    border: 1px solid pink;
+    background-color: #292b2f;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    height: 40px;
+    padding: 8px;
+}
+
+.user-pfp-name-container {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+.user-profile-picture-container {
+    background-color: #464749;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 50%;
+    align-items: center;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.user-profile-picture {
+    height: 40px;
+
+}
+
+.user-username {
+    align-self: center;
+
+}
+
+.user-setting-container {
+    align-self: center;
+    color: gray;
+}
+
+.user-settings-btn {
+    padding-right: 7px;
 }

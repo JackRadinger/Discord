@@ -23,6 +23,20 @@ def servers(userId):
     # return {"users": [user.to_dict() for user in users]}
     return jsonify(servers)
 
+@server_routes.route('/active/<int:serverId>', methods=['GET'])
+@login_required
+def server(serverId):
+    # print('here')
+    server = Server.query.get(serverId)
+    print(server.to_dict())
+    # user_servers = User.query.get(userId).servers_joined
+    # user_server = Server.query.join(joined_servers).filter(joined_servers.columns.user_id == userId)
+    # print(user_servers)
+    # servers = [server.to_dict() for server in user_servers]
+    # pp.pprint(servers)
+    # return {"users": [user.to_dict() for user in users]}
+    return jsonify(server.to_dict())
+
 @server_routes.route('/create', methods=['POST'])
 @login_required
 def create_server():

@@ -14,9 +14,15 @@ const ServerPage = () => {
   const server = useSelector(state => state.active.server);
   const history = useHistory();
 
+  useEffect(() => {
+    dispatch(activeReducer.getActiveServer(serverId))
+  }, [dispatch])
+
   if (!user) {
     return <Redirect to="/login" />;
   }
+
+  console.log('serverId', serverId)
 
 
 
@@ -30,7 +36,7 @@ const ServerPage = () => {
 
   return (
     <>
-      <Channels />
+      <Channels server={server}/>
     </>
   )
 };

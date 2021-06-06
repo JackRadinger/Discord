@@ -26,6 +26,14 @@ export const setActivePage = (page) => async (dispatch) => {
     dispatch(setActiveServer(page))
 }
 
+export const getActiveServer = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/active/${serverId}`)
+    if(response.ok) {
+        const server = await response.json()
+        dispatch(setActiveServer(server))
+    }
+}
+
 
 
 // Reducer
