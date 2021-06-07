@@ -1,0 +1,26 @@
+.user-container {
+    display: flex;
+    align-items: center;
+}
+
+.server-user-pfp-container {
+    background-color: #464749;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 50%;
+    align-items: center;
+    overflow: hidden;
+    /* margin-right: 8px; */
+}
+
+.server-user-pfp {
+    height: 40px;
+    float: left;
+}
+
+.channel-users-container {
+    overflow-y: scroll;
+}

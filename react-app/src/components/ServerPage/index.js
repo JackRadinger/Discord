@@ -5,6 +5,8 @@ import './ServerPage.css'
 import UserInfo from '../UserInfo/index'
 import * as activeReducer from '../../store/active';
 import Channels from '../Channels/index';
+import ChannelMessages from '../ChannelMessages/index';
+import ServerUsers from '../ServerUsers/index';
 
 const ServerPage = () => {
   const user = useSelector(state => state.session.user);
@@ -22,7 +24,7 @@ const ServerPage = () => {
     return <Redirect to="/login" />;
   }
 
-  console.log('serverId', serverId)
+  // console.log('serverId', serverId)
 
 
 
@@ -32,11 +34,13 @@ const ServerPage = () => {
   }
 
 
-  console.log(server)
+  // console.log(server)
 
   return (
     <>
       <Channels server={server}/>
+      <ChannelMessages />
+      <ServerUsers />
     </>
   )
 };

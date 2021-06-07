@@ -20,17 +20,18 @@ const Channels = ({server}) => {
   }
 
   function handleChannelClick(channel) {
-    setActiveChannel(channel.id)
+    dispatch(activeReducer.setActiveChannel(channel))
+    history.push(`/channels/@me/${server.id}/${channel.id}`)
   }
 
   if (Object.keys(server).length === 0) {
-    console.log('here')
+    // console.log('here')
     history.push('/channels/@me')
   } else if (server == undefined) {
     history.push('/channels/@me')
   }
 
-  console.log('here', server)
+  // console.log('here', server)
 
 
   return (

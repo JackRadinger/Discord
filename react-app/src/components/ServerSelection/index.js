@@ -59,12 +59,15 @@ const ServerSelection = () => {
   const onCreate = async (e) => {
     e.preventDefault();
     await dispatch(serverReducer.createNewServer( name, picture, user.id ))
+    setActive('')
   };
 
   async function handleServerClick(server) {
     setActive(server.id)
-    await dispatch(activeReducer.setActivePage(server))
+    dispatch(activeReducer.setActivePage(server))
+    dispatch(activeReducer.setActiveChannel(server.channels[0]))
     history.push(`/channels/@me/${server.id}/${server.channels[0].id}`)
+
   }
 
   function handleHomeClick() {
@@ -135,7 +138,7 @@ const ServerSelection = () => {
               <Button className='create-server-modal-exit'  onClick={onClose}>
                   Back
               </Button>
-              <button className='create-server-form-btn' type="submit">Create</button>
+              <button className='create-server-form-btn' type="submit" onClick={onClose}>Create</button>
             </div>
           </form>
         </ModalContent>

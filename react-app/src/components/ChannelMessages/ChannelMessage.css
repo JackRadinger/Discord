@@ -1,0 +1,21 @@
+.channel-message-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    vertical-align: bottom;
+}
+
+.channel-messages-container {
+    display: flex;
+    flex-direction: column;
+    /* overflow: scroll; */
+    width: 90vw;
+    height: 100vh;
+}
+
+.message-container {
+    border: 1px solid green;
+}
