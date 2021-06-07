@@ -34,7 +34,7 @@ const ServerPage = () => {
   }
 
 
-  // console.log(server)
+  console.log(server)
 
   return (
     <>

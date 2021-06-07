@@ -22,7 +22,7 @@ function ServerUsers() {
     return (
         <div className='channel-users-container'>
             <div className='channel-user-container'>
-                {users.map((user) => {
+                {users?.map((user) => {
                     return (
                         <div className='user-container' key={user.id}>
                             <div className='server-user-pfp-container'>

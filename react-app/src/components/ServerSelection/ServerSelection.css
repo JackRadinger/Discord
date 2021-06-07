@@ -1,5 +1,5 @@
 .server_selection__container {
-    height: 100%;
+    height: 99vh;
     width: 72px;
     /* overflow: hidden; */
     display: flex;
@@ -9,6 +9,7 @@
     padding-top: 10px;
     scrollbar-width: thin;
     scrollbar-color: #2f3136 #202225;
+    overflow: hidden;
 }
 
 .home-btn-wrapper {

@@ -1,5 +1,5 @@
 .server-info-channel-container {
-    height: 101.1vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,7 +36,7 @@
 
 .channels-container {
     background-color: #2f3136;
-    height: 90vh;
+    height: 100vh;
     color: #72767d;
     padding: 15px;
 }

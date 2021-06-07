@@ -49,7 +49,7 @@ const Channels = ({server}) => {
             <AddIcon />
           </div>
         </div>
-        {server.channels.map((channel) => {
+        {server.channels?.map((channel) => {
           return (
             <div key={channel.id} onClick={() => handleChannelClick(channel)} className={`channel-container ${channel.id === activeChannel ? 'active-channel': ''}`}>
               <div className='channel-name-container'>
