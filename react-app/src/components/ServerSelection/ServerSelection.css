@@ -1,12 +1,12 @@
 .server_selection__container {
-    height: 99vh;
-    width: 72px;
+    height: 100%;
+    width: 88px;
     /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     background-color: #202225;
     align-items: center;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     scrollbar-width: thin;
     scrollbar-color: #2f3136 #202225;
     overflow: hidden;
@@ -14,6 +14,7 @@
 
 .home-btn-wrapper {
     padding-bottom: 10px;
+    padding-top: 6px;
     border-bottom: 1px solid #464749;
     margin: 5px;
 }

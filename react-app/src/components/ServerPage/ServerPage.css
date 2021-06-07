@@ -1,9 +1,9 @@
 .server-info-channel-container {
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 240px;
+    width: 300px;
 }
 
 .server-name-container {
@@ -94,4 +94,5 @@
     background-color: #36393f;
     padding: 5px;
     padding-right: 10px;
+    border-radius: 5px;
 }
