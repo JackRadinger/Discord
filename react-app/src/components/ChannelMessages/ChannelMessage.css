@@ -1,0 +1,134 @@
+.channel-message-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 92vh;
+    overflow-y: scroll;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: #2f3136 #202225;
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+.channel-message-container > .fixed {
+    flex: 1 1 auto;
+}
+
+.channel-messages-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #36393f;
+}
+
+.message-container {
+    border-top: 1px solid hsla(0,0%,100%,0.06);;
+    position: relative;
+    bottom: 0;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.channel-title-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 8px;
+    background-color: #36393f;
+    height: 50px;
+    border-bottom: 1px solid rgb(37, 37, 37);
+    color: #fff;
+}
+
+.channel-title-hashtag {
+    margin-right: 7px;
+}
+
+.channel-title {
+    padding-left: 8px;
+    color: #fff;
+}
+
+.channel-message-user-date-container {
+    display: flex;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    padding-left: 7px;
+}
+
+.channel-message-username {
+    margin: 0;
+    color: #dcddde;
+    /* margin-top: 10px;
+    margin-bottom: 3px; */
+}
+
+.channel-message-date {
+    margin: 0;
+    font-size: .75rem;
+    line-height: 1.375rem;
+    color: #72767d;
+    margin-left: 4px;
+    /* margin-top: 10px;
+    margin-bottom: 3px; */
+}
+
+.user-message {
+    margin-left: 7px;
+    color: #dcddde;
+}
+
+.channel-message-form {
+
+}
+
+.channel-message-input-container {
+    /* background-color: #40444b; */
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.channel-message-input-div {
+    background-color: #40444b;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    padding-left: 10px;
+    align-items: center;
+}
+
+.channel-message-input {
+    border: none;
+    background-color: transparent;
+    align-self: center;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+    scroll-margin-right: 3px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2e3338;
+    border-radius: 5px;
+    scroll-margin-right: 3px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #202225;
+    border-radius: 5px;
+  }

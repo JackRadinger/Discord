@@ -1,0 +1,113 @@
+.create-server-form-container {
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 30px;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+
+.create-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sub-create-title-div {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    color: #4f5660;
+}
+
+.sub-create-title-2-div {
+    display: flex;
+    justify-content: center;
+    color: #4f5660;
+}
+
+.create-title {
+    text-align: center;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.sub-create-title {
+    font-size: 15px;
+}
+
+.sub-create-title-2 {
+    font-size: 15px;
+}
+
+.server-name-label{
+    font-size: 12px;
+    line-height: 16px;
+    color: #6a7480;
+    margin-bottom: 5px;
+}
+
+.server-name-input {
+    height: 30px;
+    width: 275px;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.server-name-input:focus {
+    outline: none;
+    border: 1px solid #0067e0;
+}
+
+.server-picture-label {
+    font-size: 12px;
+    line-height: 16px;
+    color: #6a7480;
+    margin-bottom: 5px;
+}
+
+.server-picture-input {
+    margin-bottom: 20px;
+    height: 30px;
+    width: 275px;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.server-picture-input:focus {
+    outline: none;
+    border: 1px solid #0067e0;
+}
+
+.create-server-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-server-modal-exit {
+    padding: 7px;
+    width: 50px;
+    border: none;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.create-server-form-btn {
+    padding: 7px;
+    width: 70px;
+    border: none;
+    background-color: #7289da;
+    border-radius: 6px;
+    cursor: pointer;
+}

@@ -1,3 +1,6 @@
+import { io } from 'socket.io-client';
+let socket;
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -23,10 +26,15 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
         return;
     }
-    
+    socket = io()
+    socket.emit('login', {
+      user_id: data.id
+    })
+    data.socket = socket;
+
     dispatch(setUser(data))
   }
-  
+
   export const login = (email, password) => async (dispatch)  => {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
@@ -42,23 +50,28 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
         return data;
     }
-    
+    socket = io()
+    socket.emit('login', {
+      user_id: data.id
+    })
+    data.socket = socket;
+
     dispatch(setUser(data))
     return {};
   }
-  
+
   export const logout = () => async (dispatch) => {
     const response = await fetch("/api/auth/logout", {
       headers: {
         "Content-Type": "application/json",
       }
     });
-    
+
     const data = await response.json();
     dispatch(removeUser());
   };
-  
-  
+
+
   export const signUp = (username, email, password) => async (dispatch)  => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
@@ -75,7 +88,13 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
         return data;
     }
-    
+
+    socket = io()
+    socket.emit('login', {
+      user_id: data.id
+    })
+    data.socket = socket;
+
     dispatch(setUser(data))
     return {};
   }
