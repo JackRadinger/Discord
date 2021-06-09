@@ -2,29 +2,67 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import './ChannelMessage.css'
+import socketUseEffect from '../utils/sockets'
+import * as activeReducer from '../../store/active'
 
 function ChannelMessages() {
     const user = useSelector(state => state.session.user);
     const { serverId } = useParams();
+    const { channelId } = useParams();
     const dispatch = useDispatch();
     const servers = useSelector(state => state.server.servers);
     const server = useSelector(state => state.active.server);
     const channel = useSelector(state => state.active.channel)
-    const messages = useSelector(state => state.active.channel.messages)
+    const channelMessages = useSelector(state => state.active.channel.messages)
     const history = useHistory();
+    const [messages, setMessages] = useState([]);
     const messageContainer = useRef(null);
     const [message, setMessage] = useState('')
+    const socket = user.socket;
+    const [onlineMembers, setOnlineMembers] = useState([]);
+    const [offlineMembers, setOfflineMembers] = useState([]);
 
-    useEffect(()=> {
+    useEffect(async () => {
         messageContainer.current.scroll({
             top: messageContainer.current.scrollHeight,
             behavior: 'auto'
         });
-    }, [messageContainer.current, messages ])
+        await dispatch(activeReducer.getActiveServer(serverId))
+        setMessages(channelMessages)
+    }, [messageContainer.current, messages, channelMessages, socket ])
+
+    useEffect(socketUseEffect(
+        "public",
+        socket,
+        setMessages,
+        messages,
+        channel,
+        null,
+        null,
+        server,
+        setOnlineMembers,
+        setOfflineMembers
+    ), [socket, channel, messages]);
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+        sendMessage(message)
+        setMessage('')
+    }
+
+    function sendMessage(body) {
+        socket.emit("public_chat", {
+            sender_id: user.id,
+            channel_id: channel.id,
+            body
+        });
+    }
 
     if (!user) {
     return null;
     }
+
+    console.log('messages', messages)
 
     return (
         <div className='channel-messages-container'>
@@ -57,8 +95,7 @@ function ChannelMessages() {
                 })}
             </div>
             <div className='channel-message-input-container'>
-                {/* <input>New Message</input> */}
-                <form className='channel-message-form'>
+                <form onSubmit={handleSubmit} className='channel-message-form'>
                     <div className='channel-message-input-div'>
                         <input
                         placeholder={`Message #${channel.name}`}
