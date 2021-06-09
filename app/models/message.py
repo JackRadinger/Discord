@@ -16,6 +16,6 @@ class Message(db.Model):
             'id': self.id,
             'body': self.body,
             'channel_id': self.channel_id,
-            'server': self.sender.to_dict(),
-            'created_at': self.created_at
+            'sender': self.sender.to_dict(),
+            'created_at': self.created_at.isoformat()
         }

@@ -1,8 +1,9 @@
 from flask import request
-from flask_socketio import SocketIO, send, emit
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from flask_login import current_user
 import os
 import datetime
+
 
 from app.models import User, Channel, Conversation, DirectMessage, Message, Server, db
 
@@ -49,3 +50,11 @@ def channel_chat(data):
     db.session.commit()
     print(data)
     send(new_message.to_dict(), to=f'channel_{data["channel_id"]}')
+
+@socketio.on('join')
+def on_join(data):
+    join_room(f'channel_{data["channel_id"]}')
+
+@socketio.on('leave')
+def on_join(data):
+    leave_room(f'channel_{data["channel_id"]}')
