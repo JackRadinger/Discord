@@ -54,7 +54,7 @@ const Channels = ({server}) => {
   function handleChannelClick(channel) {
     dispatch(activeReducer.setActiveChannel(channel))
     setActiveChannel(channel.id)
-    history.push(`/channels/@me/${server.id}/${channel.id}`)
+    history.push(`/channels/${server.id}/${channel.id}`)
   }
 
   const handleInviteClick = () => {

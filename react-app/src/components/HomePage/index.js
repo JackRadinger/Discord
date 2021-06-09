@@ -29,8 +29,11 @@ const HomePage = () => {
         <ProtectedRoute path='/discovery'>
           <StageDiscovery />
         </ProtectedRoute>
-        <ProtectedRoute path='/channels/@me/:serverId/:channelId'>
+        <ProtectedRoute path='/channels/:serverId/:channelId'>
           <ServerPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/channels/@me/:conversationId'>
+          {/* <ServerPage /> */}
         </ProtectedRoute>
       </Switch>
     </div>

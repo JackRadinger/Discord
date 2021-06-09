@@ -24,7 +24,7 @@ function ChannelMessages() {
     const [initialMessages, setInitialMessages] = useState(true)
     const messageDateObj = new Date(message.created_at + "Z");
 
-    useEffect(async () => {
+    useEffect(() => {
         messageContainer.current.scroll({
             top: messageContainer.current.scrollHeight,
             behavior: 'auto'
@@ -46,7 +46,7 @@ function ChannelMessages() {
             });
         }
         setInitialMessages(false)
-    }, [messages])
+    }, [messages, messageContainer.current])
 
     useEffect(socketUseEffect(
         "public",
