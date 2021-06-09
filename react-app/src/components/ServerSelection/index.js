@@ -7,7 +7,6 @@ import * as activeReducer from '../../store/active';
 import UserInfo from '../UserInfo/index';
 import discordLogo from '../SplashPage/imgs/Discord-Logo-Home.png'
 import CreateServer from '../CreateServer/index';
-import CreateServerModal from '../Modals/CreateServerModal'
 import {
   Modal,
   Button,
@@ -37,7 +36,6 @@ const ServerSelection = () => {
   },[])
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef()
 
   if (!user) {
     return <Redirect to="/login" />;

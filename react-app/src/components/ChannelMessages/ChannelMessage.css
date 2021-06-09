@@ -12,6 +12,7 @@
 
 .channel-message-container > .fixed {
     flex: 1 1 auto;
+    min-height: 50px;
 }
 
 .channel-messages-container {
@@ -41,6 +42,10 @@
     height: 50px;
     border-bottom: 1px solid rgb(37, 37, 37);
     color: #fff;
+    position: fixed;
+    overflow-x: hidden;
+    z-index: 1;
+    width: 100%;
 }
 
 .channel-title-hashtag {
