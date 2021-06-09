@@ -21,6 +21,9 @@ function ServerUsers() {
 
     return (
         <div className='channel-users-container'>
+            <div className='user-space'>
+
+            </div>
             <div className='channel-users-title-container'>
                 <h3 className='channel-users-title'>Users</h3>
             </div>

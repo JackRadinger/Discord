@@ -1,0 +1,333 @@
+.server-settings-div {
+    background-color: #18191c;
+    position: fixed;
+    color: white;
+    margin-top: 55px;
+    width: 220px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.server-invite-link-container {
+    display: flex;
+    justify-content: space-between;
+    color: #a5b3e7;
+    align-items: center;
+    font-size: 14px;
+    padding: 6px 8px;
+    margin: 2px 0;
+}
+
+.server-invite-link-container:hover {
+    background-color: #8ea1e1;
+    color: white;
+    border-radius: 2px;
+}
+
+.server-invite-link {
+
+}
+
+.server-owner-settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    font-size: 14px;
+    color: #b9bbbe;
+    margin: 2px 0;
+}
+
+.server-owner-settings-container:hover {
+    background-color: #8ea1e1;
+    border-radius: 2px;
+    color: white;
+}
+
+.server-owner-settings {
+
+}
+
+.server-owner-create-channel-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    font-size: 14px;
+    color: #b9bbbe;
+    margin: 2px 0;
+}
+
+.server-owner-create-channel-container:hover {
+    background-color: #8ea1e1;
+    border-radius: 2px;
+    color: white;
+}
+
+.server-owner-create-channel {
+
+}
+
+.leave-server-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    font-size: 14px;
+    color: #ed4245;
+    margin: 2px 0;
+}
+
+.leave-server-container:hover {
+    background-color: #ed4245;
+    color: white;
+    border-radius: 2px;
+}
+
+.create-invite-title-container {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+}
+
+.create-invite-title {
+    /* width: 100%; */
+    margin: 0;
+    margin-right: 100px;
+    padding: 0;
+    color: white;
+}
+
+.create-invite-container {
+    background-color: #2e2f33;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    margin-top: 5%;
+    margin-left: 40%;
+    border: 1px solid black;
+}
+
+/* .backdrop {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0);
+    opacity: 0.85;
+} */
+
+.copy-invite-button {
+    color: #fff;
+    background-color: #7289da;
+    border: none;
+    border-radius: 3px;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    width: 80px;
+}
+
+.server-invite-container {
+    background-color: #40444b;
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    padding-left: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.3)
+}
+
+.invite-url {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: transparent;
+    font-size: 20px;
+    color: #fff;
+    /* z-index: 1; */
+}
+
+.invite {
+    /* margin-top: 400px; */
+    margin-left: 45%;
+    position: fixed;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.server-settings-modal-container {
+    width: 35vw;
+    height: 60vh;
+    margin-top: 65px;
+    margin-left: 30%;
+    background-color: #2f3136;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.server-settings-navigation-container {
+    background-color: #2f3136;
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: flex-end;
+    align-items: center;
+    border-right: 1px solid gray;
+    height: 100%;
+    padding-right: 10px;
+}
+
+.server-overview {
+    color: #fff;
+    padding: 10px;
+}
+
+.server-delete {
+    color: #ed4245;
+    padding: 10px;
+}
+
+.server-delete:hover {
+    color: #fff;
+    background-color: #ed4245;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.server-settings-server-picture {
+    width: 60px;
+    height: 60px;
+}
+
+.server-settings-content {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    padding: 20px;
+}
+
+.close-server-settings {
+    align-self: flex-end;
+    border: 1px solid gray;
+}
+
+.change-server-name-input {
+    height: 30px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    margin: 5px;
+}
+
+.server-picture-input {
+    height: 30px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    margin: 5px;
+}
+
+.submit-server-changes {
+    align-self: flex-end;
+    margin: 5px;
+    background-color: #8ea1e1;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+
+.server-picture-input-title {
+    margin: 5px;
+}
+
+.server-settings-overview-title {
+    margin: 5px;
+}
+
+.change-server-name-title {
+    margin: 5px;
+}
+
+.delete-server-container {
+    margin-top: 600px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.delete-server-confirmation-title {
+    margin: 20px;
+}
+
+.delete-span {
+    margin: 20px;
+    font-size: 18px;
+}
+
+.delete-server-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-server-btn {
+    background-color: #ed4245;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    margin-right: 60px;
+    cursor: pointer;
+}
+
+.cancel-delete-server-btn {
+    background-color: #8ea1e1;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.channel-over-title {
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.overview-exit-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.channel-settings-container {
+    height: 300px;
+}
+
+.delete-channel-container {
+    margin-top: 400px;
+}
+
+.add-channels-icon {
+    cursor: pointer;
+}
+

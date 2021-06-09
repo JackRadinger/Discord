@@ -3,17 +3,49 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import UserInfo from '../UserInfo/index'
 import * as activeReducer from '../../store/active';
-import { Icon } from '@chakra-ui/react';
-import { AddIcon, SettingsIcon, ChevronDownIcon } from '@chakra-ui/icons'
+import { Icon, useEditable, useOutsideClick } from '@chakra-ui/react';
+import { AddIcon, SettingsIcon, ChevronDownIcon, CloseIcon } from '@chakra-ui/icons'
+import './Channels.css';
+import {
+  Modal,
+  Button,
+  Lorem,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  useClipboard,
+  Flex,
+  Input
+} from "@chakra-ui/react"
+import ServerInvite from '../Modals/ServerInvite';
+import ServerSettings from '../Modals/ServerSettings';
+import ChannelSettings from '../Modals/ChannelSettings';
+import CreateChannel from '../Modals/CreateChannel';
 
 const Channels = ({server}) => {
   const user = useSelector(state => state.session.user);
   const { serverId } = useParams();
   const dispatch = useDispatch();
   const servers = useSelector(state => state.server.servers);
-  // const server = useSelector(state => state.active.server);
   const history = useHistory();
-  const [activeChannel, setActiveChannel] = useState('')
+  const [activeChannel, setActiveChannel] = useState('');
+  const [openServerSettings, setOpenServerSettings] = useState(false)
+  const [openInviteModal, setOpenInviteModal] = useState(false)
+  const [openServerSettingsModal, setOpenServerSettingsModal] = useState(false)
+  const [openCreateChannelModal, setOpenCreateChannelModal] = useState(false)
+  const [openEditChannelModal, setOpenEditChannelModal] = useState(false)
+  const [openLeaveServerModal, setOpenLeaveServerModal] = useState(false)
+  const ref = React.useRef()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [hasCopied, setHasCopied] = useState(false)
+  useOutsideClick({
+    ref: ref,
+    handler: () => setOpenServerSettings(false)
+  })
 
   if (!user) {
     return <Redirect to="/login" />;
@@ -25,30 +57,103 @@ const Channels = ({server}) => {
     history.push(`/channels/@me/${server.id}/${channel.id}`)
   }
 
-  if (Object.keys(server).length === 0) {
-    // console.log('here')
-    history.push('/channels/@me')
-  } else if (server == undefined) {
-    history.push('/channels/@me')
+  const handleInviteClick = () => {
+    setOpenInviteModal(true)
   }
 
-  console.log('here', server)
+  const handleChannelCreateClick = () => {
+    setOpenCreateChannelModal(true)
+  }
 
+  const handleServerSettingsClick = () => {
+    setOpenServerSettingsModal(true)
+  }
+
+  const handleCreateChannelClick = () => {
+    setOpenCreateChannelModal(true)
+  }
+
+  const  handleLeaveServerClick = () => {
+    setOpenLeaveServerModal(true)
+  }
+
+  const handleChannelSettingsClick = () => {
+    setOpenEditChannelModal(true)
+  }
+
+  if (Object.keys(server).length === 0) {
+    history.push('/channels/@me')
+    return null
+  } else if (server == undefined) {
+    history.push('/channels/@me')
+    dispatch(activeReducer.getActiveServer(serverId))
+  }
+
+  if (!server) {
+   return null
+  }
+  const serverOwner = (server?.owner.id === user?.id)
 
   return (
     <div className='server-info-channel-container'>
-      <div className='server-name-container' >
+      <div className='server-name-container' onClick={() => setOpenServerSettings(true)} >
         <h3 className='server-name'>{server.name}</h3>
+        {openServerSettings &&
+          <div className='server-settings-div' ref={ref}>
+            <div onClick={handleInviteClick} className='server-invite-link-container'>
+              <div className='server-invite-link'>Invite People</div>
+              <div className='server-invite-icon-container'>
+                <svg viewBox="0 0 24 24" height="16" width="16">
+                  <path fill="currentColor" fillRule="evenodd" clipRule="evenodd" d="M21 3H24V5H21V8H19V5H16V3H19V0H21V3ZM10 12C12.205 12 14 10.205 14 8C14 5.795 12.205 4 10 4C7.795 4 6 5.795 6 8C6 10.205 7.795 12 10 12ZM10 13C5.289 13 2 15.467 2 19V20H18V19C18 15.467 14.711 13 10 13Z"></path>
+                </svg>
+              </div>
+            </div>
+
+
+            { serverOwner &&
+            <div onClick={handleServerSettingsClick} className='server-owner-settings-container'>
+              <div className='server-owner-settings'>Server Settings</div>
+              <SettingsIcon className='channel-settings-btn'/>
+            </div>}
+
+
+            { serverOwner &&
+            <div onClick={handleCreateChannelClick} className='server-owner-create-channel-container'>
+              <div className='server-owner-create-channel'>Create Channel</div>
+              <div className='create-channel-icon-container'>
+                <svg viewBox="0 0 24 24" height="16" width="16">
+                  <path fill="currentColor" d="M12 2.00098C6.486 2.00098 2 6.48698 2 12.001C2 17.515 6.486 22.001 12 22.001C17.514 22.001 22 17.515 22 12.001C22 6.48698 17.514 2.00098 12 2.00098ZM17 13.001H13V17.001H11V13.001H7V11.001H11V7.00098H13V11.001H17V13.001Z"></path>
+                </svg>
+              </div>
+            </div>}
+
+
+
+            {!serverOwner &&
+              <div onClick={handleLeaveServerClick} className='leave-server-container'>
+                <div className='leave-server-label'>Leave Server</div>
+                <div className='leave-server-icon-container'>
+                  <svg viewBox="0 0 24 24" height="16" width="16">
+                    <path fill="currentColor" d="M10.418 13L12.708 15.294L11.292 16.706L6.586 11.991L11.294 7.292L12.707 8.708L10.41 11H21.949C21.446 5.955 17.177 2 12 2C6.486 2 2 6.487 2 12C2 17.513 6.486 22 12 22C17.177 22 21.446 18.046 21.949 13H10.418Z"></path>
+                  </svg>
+                </div>
+            </div>
+            }
+          </div>
+        }
         <div className='server-settings'>
-          <ChevronDownIcon className='server-settings-icon' w={20} h={20} color="red.400"/>
+          {!openServerSettings && <ChevronDownIcon className='server-settings-icon' w={20} h={20} color="red.400"/>}
+          {openServerSettings && <CloseIcon className='server-settings-icon' w={10} h={10}/>}
         </div>
       </div>
       <div className='channels-container'>
         <div className='channels-title-container'>
           <h4 className='channels-title'>Text Channels</h4>
-          <div>
-            <AddIcon />
+          {serverOwner &&
+          <div className='add-channels-div'>
+            <AddIcon onClick={handleChannelCreateClick} className='add-channels-icon'/>
           </div>
+          }
         </div>
         {server.channels?.map((channel) => {
           return (
@@ -63,13 +168,44 @@ const Channels = ({server}) => {
                   {channel.name}
                 </div>
               </div>
-              <div className='channel-setting-container'>
-                <SettingsIcon className='channel-settings-btn'/>
+              <div className='channel-setting-container' onClick={handleChannelSettingsClick}>
+                {serverOwner && <SettingsIcon className='channel-settings-btn'/>}
               </div>
             </div>
           )
         })}
       </div>
+      <Modal
+        isOpen={openInviteModal}
+        onClose={hasCopied}
+      >
+        <ModalContent>
+          <ServerInvite setOpenInviteModal={setOpenInviteModal} setHasCopied={setHasCopied} hasCopied={hasCopied}/>
+        </ModalContent>
+      </Modal>
+      <Modal
+        isOpen={openServerSettingsModal}
+        onClose={hasCopied}
+      >
+        <ModalContent>
+          <ServerSettings setOpenServerSettingsModal={setOpenServerSettingsModal}/>
+        </ModalContent>
+
+      </Modal>
+      <Modal
+        isOpen={openEditChannelModal}
+      >
+        <ModalContent>
+          <ChannelSettings setOpenEditChannelModal={setOpenEditChannelModal}/>
+        </ModalContent>
+      </Modal>
+      <Modal
+        isOpen={openCreateChannelModal}
+      >
+        <ModalContent>
+          <CreateChannel setOpenCreateChannelModal={setOpenCreateChannelModal}/>
+        </ModalContent>
+      </Modal>
       <UserInfo />
     </div>
   )

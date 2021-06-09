@@ -16,6 +16,7 @@
     justify-items: center;
     background-color: #2f3136;
     border-bottom: 1px solid rgb(37, 37, 37);
+
 }
 
 .server-name {
@@ -39,6 +40,7 @@
     height: 100vh;
     color: #72767d;
     padding: 15px;
+    overflow-y: scroll;
 }
 
 .channels-title-container {

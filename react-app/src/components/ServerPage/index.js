@@ -24,17 +24,9 @@ const ServerPage = () => {
     return <Redirect to="/login" />;
   }
 
-  // console.log('serverId', serverId)
-
-
-
   if (Object.keys(server).length === 0) {
-    console.log('here')
     history.push('/channels/@me')
   }
-
-
-  console.log(server)
 
   return (
     <>

@@ -82,6 +82,7 @@
     width: 275px;
     border: 1px solid gray;
     border-radius: 3px;
+    outline: none;
 }
 
 .server-picture-input:focus {
