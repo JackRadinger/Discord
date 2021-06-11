@@ -29,6 +29,15 @@ def server(serverId):
 
     return jsonify(server.to_dict())
 
+@server_routes.route('/all', methods=['GET'])
+@login_required
+def all_server():
+
+    servers = Server.query.all()
+    # print(server.to_dict())
+
+    return jsonify([server.to_dict() for server in servers])
+
 @server_routes.route('/create', methods=['POST'])
 @login_required
 def create_server():
@@ -128,3 +137,22 @@ def create_channel():
         db.session.add(channel)
         db.session.commit()
         return channel.to_dict()
+
+@server_routes.route('/join/<int:id>', methods=['POST'])
+@login_required
+def join_server(id):
+    server = Server.query.get(id)
+    server.users.append(User.query.get(current_user.id))
+    # server.members.append(User.query.get(1))
+    db.session.add(server)
+    db.session.commit()
+    return server.to_dict()
+
+@server_routes.route('/leave/<int:id>', methods=['DELETE'])
+@login_required
+def leave_server(id):
+    server = Server.query.get(id)
+    server.users.remove(User.query.get(current_user.id))
+    db.session.add(server)
+    db.session.commit()
+    return server.to_dict()

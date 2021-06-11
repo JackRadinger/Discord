@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 7px;
+    cursor: pointer;
 }
 
 .server-user-pfp-container {
@@ -34,10 +35,47 @@
     overflow-y: scroll;
     background-color: #2f3136;
     color: #8e9297;
-    
+
     /* margin-top: 50px; */
 }
 
 .user-space {
     height: 50px;
+}
+
+.new-message-container {
+    width: 150px;
+    height: 75px;
+    /* position: fixed; */
+    /* margin-right: 200px; */
+    padding-left: 45px;
+}
+
+.send-message-confirm {
+    background-color: #8ea1e1;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    width: 45px;
+    margin-right: 10px;
+}
+
+.send-message-deny {
+    background-color: #8ea1e1;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    width: 45px;
+}
+
+.user-actions-container {
+    padding-left: 5px;
 }

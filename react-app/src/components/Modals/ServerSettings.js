@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-// import './CreateServer.css';
 import * as serverReducer from '../../store/server';
 import * as activeReducer from '../../store/active'
 import {
     Modal,
-    Button,
-    Lorem,
-    ModalOverlay,
     ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
     useDisclosure,
-    useClipboard,
-    Flex,
-    Input,
-    useEditable
 } from "@chakra-ui/react"
 import { CloseIcon } from '@chakra-ui/icons'
 

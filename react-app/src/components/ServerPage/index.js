@@ -20,6 +20,7 @@ const ServerPage = () => {
     dispatch(activeReducer.getActiveServer(serverId))
   }, [dispatch])
 
+
   if (!user) {
     return <Redirect to="/login" />;
   }

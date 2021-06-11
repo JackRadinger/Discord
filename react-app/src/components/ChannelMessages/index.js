@@ -29,10 +29,9 @@ function ChannelMessages() {
             top: messageContainer.current.scrollHeight,
             behavior: 'auto'
         });
-        // await dispatch(activeReducer.getActiveServer(serverId))
         setMessages(channelMessages)
 
-    }, [messageContainer.current, channelMessages, socket ])
+    }, [messageContainer.current, channelMessages, socket, messages ])
 
     useEffect(() => {
         if (
@@ -79,8 +78,6 @@ function ChannelMessages() {
     return null;
     }
 
-    console.log('messages', messages)
-
     return (
         <div className='channel-messages-container'>
             <div ref={messageContainer} className='channel-message-container'>
@@ -96,7 +93,7 @@ function ChannelMessages() {
                     return (
                         <div className='message-container' key={message.id}>
                             <div className='server-user-pfp-container'>
-                                <img className='server-user-pfp' src={user.profilePicture} />
+                                <img className='server-user-pfp' src={message.sender.profilePicture} />
                             </div>
                             <div className='channel-message'>
                                 <div className='channel-message-user-date-container'>

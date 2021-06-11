@@ -1,4 +1,4 @@
-from app.models import db, User, Conversation, PrivateMessage
+from app.models import db, User, Conversation, DirectMessage
 from faker import Faker
 from random import randint
 from datetime import datetime, timedelta
@@ -20,7 +20,7 @@ def seed_private_messages():
         for j in range(1, randint(1, 73)):
             sender = users[randint(0, 1)]
             reciever = users[0] if users[0] != sender else users[1]
-            pm = PrivateMessage(
+            pm = DirectMessage(
                 body=fake.sentence(),
                 sender_id=sender,
                 recipient_id=reciever,
@@ -37,5 +37,5 @@ def seed_private_messages():
 
 
 def undo_private_messages():
-    db.session.execute('TRUNCATE private_messages RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE direct_messages RESTART IDENTITY CASCADE;')
     db.session.commit()

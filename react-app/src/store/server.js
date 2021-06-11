@@ -8,6 +8,9 @@ const DELETE_SERVER = 'server/DELETE_SERVER'
 const DELETE_CHANNEL = 'server/DELETE_CHANNEL';
 const EDIT_CHANNEL = 'server/EDIT_CHANNEL';
 const CREATE_CHANNEL = 'server/CREATE_CHANNEL';
+const ALL_SERVERS = 'servers/ALL_SERVER';
+const JOIN_SERVER = 'server/JOIN_SERVER';
+const LEAVE_SERVER = 'server/LEAVE_SERVER';
 
 //Action Creater
 
@@ -58,6 +61,26 @@ const createChannel = (channel) => {
     }
 }
 
+const setAllServers = (servers) => {
+    return {
+        type: ALL_SERVERS,
+        servers
+    }
+}
+
+const joinServer = (server) => {
+    return {
+        type: JOIN_SERVER,
+        server
+    }
+}
+
+const leaveServer = (server) => {
+    return {
+        type: LEAVE_SERVER,
+        server
+    }
+}
 //Thunk
 
 export const getUserServers = (userId) => async (dispatch) => {
@@ -65,6 +88,14 @@ export const getUserServers = (userId) => async (dispatch) => {
     if(response.ok) {
         const servers = await response.json()
         dispatch(setServers(servers))
+    }
+}
+
+export const getServers = () => async (dispatch) => {
+    const response = await fetch('/api/servers/all')
+    if(response.ok) {
+        const servers = await response.json()
+        dispatch(setAllServers(servers))
     }
 }
 
@@ -158,9 +189,29 @@ export const createNewChannel = (newChannel) => async (dispatch) => {
     }
 }
 
+export const joinNewServer = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/join/${serverId}`, {
+        method: 'POST'
+    })
+    if(response.ok) {
+        const server = await response.json()
+        dispatch(joinServer(server))
+    }
+}
+
+export const serverLeave = (serverId) => async (dispatch) => {
+    const res = await fetch(`/api/servers/leave/${serverId}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok) {
+        const server = await res.json();
+        dispatch(leaveServer(server));
+    }
+};
 
 // Reducer
-const initialState = {'servers': []};
+const initialState = {'servers': [], 'allServers': []};
 
 const serverReducer = (state = initialState, action) => {
     let newState;
@@ -228,7 +279,19 @@ const serverReducer = (state = initialState, action) => {
             }
 
             return newState
-
+        case ALL_SERVERS:
+            newState = { ...state }
+            newState.allServers = action.servers
+            return newState
+        case JOIN_SERVER:
+            newState = { ...state }
+            newState.servers = [ ...newState.servers, action.server]
+            return newState
+        case LEAVE_SERVER:
+            newState = { ...state }
+            const serverIndex = newState.servers.indexOf(action.server)
+            newState.servers.splice(serverIndex, 1);
+            return newState
         default:
             return state;
     }
