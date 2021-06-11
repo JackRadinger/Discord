@@ -123,7 +123,5 @@ router.post(
 
 #### To Do
 Allow users to:
-1. update profile information such as their email
-2. update ratings and reviews
-3. update spots
-4. reply to other comments
+1. set server permissions
+Servers and Direct messages to display if a user is online
