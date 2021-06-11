@@ -53,6 +53,10 @@ useEffect(socketUseEffect(
   recipientId
 ), [socket, conversation, messages]);
 
+const updateMessage = (e) => {
+  setMessage(e.target.value);
+};
+
 async function handleSubmit(e) {
     e.preventDefault()
     sendMessage(message)
@@ -120,7 +124,8 @@ function sendMessage(body) {
             <div className='channel-message-input-div'>
               <input
               className='channel-message-input'
-              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              onChange={updateMessage}
               >
               </input>
             </div>
