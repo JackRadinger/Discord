@@ -1,98 +1,131 @@
 # Flask React Project
 
-This is the backend for the Flask React project.
+# Disvoice
+Disvoice is a direct clone of Discord.
+To explore disvoice click [here](https://disvoice.herokuapp.com/).
+### Splash Page
+![image of splash](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Splash.jpg)
+### Home Page
+![image of home](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/home.jpg)
+### Login Page
+![image of login](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Login.jpg)
+### Signup Page
+![image of signup](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/sign-up.jpg)
+### Spot Page
+![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/spot.jpg)
+![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/description.png)
+![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Review-GoogleMaps.png)
+### Host Page
+![image of host](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Host.png)
 
-## Getting started
+# Structure
+### Back End
+Disvoice was built using Flask for the server with a postgreSQL database. The back end structure utilizes RESTful convention and handles user requests through our API. disvoice is session based and uses BCrypt to safely store user passwords and verify login credentials.
+### Front End
+The front end was built using React and Redux to render the pages with JavaScript.
 
-1. Clone this repository (only this branch)
+### List of Technologies
+* Flask
+* BCrypt
+* PostgreSQL
+* Heroku
+* React
+* Redux
+* Websockets
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+### Core Features
+* Join, Create, Edit, Delete Server
+* Create, Edit, Delete Channel
+* Create Direct Messages
+* Live messaging
 
-2. Install dependencies
+##### User Authorization
+User authentication is handled in JavaScript using BCrypt to hash passwords for storage. To authenticate users, the submitted password is hashed and then compared to the hashed password stored in the database.
+````
+const validateSignup = [
+    check('email')
+      .exists({ checkFalsy: true })
+      .isEmail()
+      .withMessage('Please provide a valid email.'),
+    check('username')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 4 })
+      .withMessage('Please provide a username with at least 4 characters.'),
+    check('username')
+      .not()
+      .isEmail()
+      .withMessage('Username cannot be an email.'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 6 })
+      .withMessage('Password must be 6 characters or more.'),
+    handleValidationErrors,
+];
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+router.post(
+    '',
+    validateSignup,
+    asyncHandler(async (req, res) => {
+      const { firstName, lastName, email, password, username } = req.body;
+      console.log(firstName, lastName)
+      const user = await User.signup({ firstName, lastName, email, username, password });
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+      await setTokenCookie(res, user);
 
-   ```bash
-   pipenv shell
-   ```
+      return res.json({
+        user,
+      });
+    }),
+);
+````
+In order for the user to log in, I first check to see if the inputs are valid. Then, I find the user in the database based on their email. If I are able to find a user, then I hash their input password and compare it to the hashed password stored in the server. Finally, if the hashed input password matches the stored hashed password, the user is logged in with their session persisted and redirected to home page.
+##### Session
+Sessions are stored server side using SQLAlchemy. For actions that require authorization, the server verifies that a cookie with a matching user id as the user exists in the storage. Upon verification that a session does exist for that user, the user is then all allowed to perform CRUD operations. If no such session exists in the storage, then user is redirected to the login page.
 
-   ```bash
-   flask db upgrade
-   ```
+````
+// This route is used to login a user. The demo user is handled in the front end by assigning values associated with the demo user.
 
-   ```bash
-   flask seed all
-   ```
+const validateLogin = [
+    check('credential')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .withMessage('Please provide a valid email or username.'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a password.'),
+    handleValidationErrors,
+  ];
 
-   ```bash
-   flask run
-   ```
+router.post(
+    '/',
+    validateLogin,
+    asyncHandler(async (req, res, next) => {
+      const { credential, password } = req.body;
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+      const user = await User.login({ credential, password });
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+      if (!user) {
+        const err = new Error('Login failed');
+        err.status = 401;
+        err.title = 'Login failed';
+        err.errors = ['The provided credentials were invalid.'];
+        return next(err);
+      }
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+      await setTokenCookie(res, user);
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+      return res.json({
+        user,
+      });
+    }),
+);
 
-## Deploy to Heroku
+````
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
-
-   ```bash
-   heroku login
-   ```
-
-5. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
+#### To Do
+Allow users to:
+1. update profile information such as their email
+2. update ratings and reviews
+3. update spots
+4. reply to other comments
