@@ -30,6 +30,7 @@ const ServerSelection = () => {
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
   const [picture, setPicture] = useState("");
+  const [invite, setInvite] = useState("");
 
   useEffect(() => {
     dispatch(serverReducer.getUserServers(user.id))
@@ -52,6 +53,10 @@ const ServerSelection = () => {
 
   const updatePicture = (e) => {
     setPicture(e.target.value);
+  };
+
+  const updateInvite = (e) => {
+    setInvite(e.target.value);
   };
 
   const onCreate = async (e) => {
@@ -79,6 +84,15 @@ const ServerSelection = () => {
     setOpenModal(true)
   }
 
+  function handleInvite(e) {
+    e.preventDefault()
+    let serverId = invite.slice(7)
+    dispatch(serverReducer.joinNewServer(serverId))
+    onClose()
+    setActive('')
+    setInvite('')
+  }
+
   return (
     <>
       <div className='server_selection__container'>
@@ -100,7 +114,7 @@ const ServerSelection = () => {
       </div>
       <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
-        <ModalContent className='create-server-form-container' width='400px' height='300px'>
+        <ModalContent className='create-server-form-container' width='400px' height='400px'>
           <form className='create-server-form' onSubmit={onCreate}>
             <div className='create-title-container'>
               <h3 className='create-title'>Customize Your Server</h3>
@@ -124,7 +138,7 @@ const ServerSelection = () => {
               <div className='server-picture-input-wrapper'>
                   <h5 className='server-picture-label'>PICTURE URL</h5>
                   <input
-                      className='server-picture-input'
+                      className='server-name-input invite-link'
                       type="text"
                       name="server-picture"
                       onChange={updatePicture}
@@ -137,7 +151,20 @@ const ServerSelection = () => {
                   Back
               </Button>
               <button className='create-server-form-btn' type="submit" onClick={onClose}>Create</button>
+
+
             </div>
+            <div className='server-picture-input-wrapper'>
+                  <h5 className='server-picture-label'>INVITE LINK</h5>
+                  <input
+                      className='server-name-input invite-link'
+                      type="text"
+                      name="server-picture"
+                      onChange={updateInvite}
+                      value={invite}
+                  />
+                  <button className='create-server-form-btn' onClick={(e) => handleInvite(e)}>Join</button>
+              </div>
           </form>
         </ModalContent>
       </Modal>

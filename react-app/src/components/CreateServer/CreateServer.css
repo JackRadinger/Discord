@@ -82,7 +82,7 @@
     width: 275px;
     border: 1px solid gray;
     border-radius: 3px;
-    outline: none;
+    /* outline: none; */
 }
 
 .server-picture-input:focus {
@@ -111,4 +111,9 @@
     background-color: #7289da;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.invite-link {
+    margin-bottom: 20px;
+    margin-right: 48px;
 }

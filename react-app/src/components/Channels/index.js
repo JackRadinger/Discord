@@ -74,8 +74,8 @@ const Channels = ({server}) => {
     setOpenCreateChannelModal(true)
   }
 
-  const  handleLeaveServerClick = () => {
-    dispatch(serverReducer.serverLeave(server.id))
+  const handleLeaveServerClick = async () => {
+    await dispatch(serverReducer.serverLeave(server.id))
     dispatch(serverReducer.getUserServers(user.id))
     setOpenServerSettings(false)
     history.push('/channels/@me')
