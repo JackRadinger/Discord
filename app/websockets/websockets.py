@@ -10,8 +10,8 @@ from app.models import User, Channel, Conversation, DirectMessage, Message, Serv
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
-        "http://actual-app-url.herokuapp.com",
-        "https://actual-app-url.herokuapp.com"
+        "http://disvoice.herokuapp.com",
+        "https://disvoice.herokuapp.com"
     ]
 else:
     origins = "*"
