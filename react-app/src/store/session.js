@@ -4,6 +4,7 @@ let socket;
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const EDIT_USER = "session/EDIT_USER"
 
 const setUser = (user) => ({
     type: SET_USER,
@@ -13,6 +14,13 @@ const setUser = (user) => ({
 const removeUser = () => ({
     type: REMOVE_USER,
 })
+
+const setEdit = (user) => {
+  return {
+    type: EDIT_USER,
+    user
+  }
+}
 
 const initialState = { user: null };
 
@@ -99,12 +107,31 @@ export const authenticate = () => async (dispatch) => {
     return {};
   }
 
+  export const editProfilePicture = (pictureUrl, userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/edit/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"},
+      body: JSON.stringify({
+        pictureUrl
+      })
+    })
+    const user = await response.json()
+    dispatch(setEdit(user))
+  }
+
 export default function reducer(state=initialState, action) {
+    let newState
     switch (action.type) {
         case SET_USER:
             return {user: action.payload}
         case REMOVE_USER:
             return {user: null}
+        case EDIT_USER:
+          newState = { ...state }
+          newState.user = action.user
+
+          return newState
         default:
             return state;
     }

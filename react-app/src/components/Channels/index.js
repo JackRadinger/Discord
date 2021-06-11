@@ -25,6 +25,7 @@ import ServerInvite from '../Modals/ServerInvite';
 import ServerSettings from '../Modals/ServerSettings';
 import ChannelSettings from '../Modals/ChannelSettings';
 import CreateChannel from '../Modals/CreateChannel';
+import * as serverReducer from "../../store/server";
 
 const Channels = ({server}) => {
   const user = useSelector(state => state.session.user);
@@ -54,7 +55,7 @@ const Channels = ({server}) => {
   function handleChannelClick(channel) {
     dispatch(activeReducer.setActiveChannel(channel))
     setActiveChannel(channel.id)
-    history.push(`/channels/@me/${server.id}/${channel.id}`)
+    history.push(`/channels/${server.id}/${channel.id}`)
   }
 
   const handleInviteClick = () => {
@@ -74,7 +75,10 @@ const Channels = ({server}) => {
   }
 
   const  handleLeaveServerClick = () => {
-    setOpenLeaveServerModal(true)
+    dispatch(serverReducer.serverLeave(server.id))
+    dispatch(serverReducer.getUserServers(user.id))
+    setOpenServerSettings(false)
+    history.push('/channels/@me')
   }
 
   const handleChannelSettingsClick = () => {

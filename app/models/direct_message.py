@@ -23,5 +23,5 @@ class DirectMessage(db.Model):
             'recipient': self.recipient.to_dict(),
             'conversation_id': self.conversation_id,
             'read': self.read,
-            'created_at': self.created_at,
+            'created_at': self.created_at.isoformat()
         }

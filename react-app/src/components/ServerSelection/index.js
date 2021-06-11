@@ -64,13 +64,13 @@ const ServerSelection = () => {
     setActive(server.id)
     dispatch(activeReducer.setActivePage(server))
     dispatch(activeReducer.setActiveChannel(server.channels[0]))
-    history.push(`/channels/@me/${server.id}/${server.channels[0].id}`)
+    history.push(`/channels/${server.id}/${server.channels[0].id}`)
 
   }
 
   function handleHomeClick() {
     setActive('home')
-    history.push(`/discovery`)
+    history.push(`/channels/@me`)
   }
 
   function handleCreateServerClick() {

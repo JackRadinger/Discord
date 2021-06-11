@@ -1,33 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-// import './CreateServer.css';
 import * as serverReducer from '../../store/server';
 import * as activeReducer from '../../store/active'
-import {
-    Modal,
-    Button,
-    Lorem,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    useClipboard,
-    Flex,
-    Input,
-    useEditable
-} from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import { CloseIcon } from '@chakra-ui/icons'
 
 const CreateChannel = ({setOpenCreateChannelModal}) => {
   const user = useSelector(state => state.session.user);
-  const history = useHistory();
   const dispatch = useDispatch();
   const server = useSelector(state => state.active.server);
-//   const channel = useSelector(state => state.active.channel);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [channelName, setChannelName] = useState('')
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
