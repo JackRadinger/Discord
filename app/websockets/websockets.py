@@ -25,8 +25,6 @@ online_users = {}
 def login(data):
     online_users[request.sid] = data['user_id']
     user = User.query.get(data['user_id'])
-    # print('user servers', [server.to_dict() for server in user.servers_joined])
-    # print('request.sid', request.sid)
     for server in user.servers_joined:
         emit('user_online', {'user_id': user.id, 'server': server.id})
 

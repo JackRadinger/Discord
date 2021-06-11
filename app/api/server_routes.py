@@ -15,7 +15,6 @@ def servers(userId):
 
     user_servers = User.query.get(userId).servers_joined
 
-    # print(user_servers)
     servers = [server.to_dict() for server in user_servers]
 
     return jsonify(servers)
@@ -25,7 +24,6 @@ def servers(userId):
 def server(serverId):
 
     server = Server.query.get(serverId)
-    # print(server.to_dict())
 
     return jsonify(server.to_dict())
 
@@ -34,7 +32,6 @@ def server(serverId):
 def all_server():
 
     servers = Server.query.all()
-    # print(server.to_dict())
 
     return jsonify([server.to_dict() for server in servers])
 
@@ -42,9 +39,7 @@ def all_server():
 @login_required
 def create_server():
     data = request.json
-    # print('here')
-    # print(data)
-    # print('here')
+
     try:
         picture = data['serverPicture']
     except:
@@ -72,8 +67,6 @@ def create_server():
 def edit_server(id):
     data = request.json
 
-    print(data)
-
     try:
         picture = data['serverPicture']
     except:
@@ -93,9 +86,7 @@ def edit_server(id):
 @server_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_server(id):
-    print('here')
     server = Server.query.get(id)
-    print(server.to_dict())
     server.users.remove(User.query.get(server.owner.id))
     db.session.add(server)
     db.session.commit()
@@ -110,9 +101,7 @@ def edit_channel(id):
     data = request.json
 
     channel = Channel.query.get(id)
-    print(channel.to_dict())
     channel.name = data['name']
-    print(channel.to_dict())
     db.session.add(channel)
     db.session.commit()
     return channel.to_dict()
@@ -121,7 +110,6 @@ def edit_channel(id):
 @login_required
 def delete_channel(id):
     channel = Channel.query.get(id)
-    print(channel.to_dict())
     db.session.delete(channel)
     db.session.commit()
     return channel.to_dict()
@@ -130,7 +118,6 @@ def delete_channel(id):
 @login_required
 def create_channel():
     data = request.json
-    print(data['server_id'])
     server = Server.query.get(data['server_id'])
     if server.owner_id == current_user.id:
         channel = Channel(name=data['name'], description=data['description'], server_id=data['server_id'])
@@ -143,7 +130,6 @@ def create_channel():
 def join_server(id):
     server = Server.query.get(id)
     server.users.append(User.query.get(current_user.id))
-    # server.members.append(User.query.get(1))
     db.session.add(server)
     db.session.commit()
     return server.to_dict()
