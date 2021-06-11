@@ -4,19 +4,17 @@
 Disvoice is a direct clone of Discord.
 To explore disvoice click [here](https://disvoice.herokuapp.com/).
 ### Splash Page
-![image of splash](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Splash.jpg)
-### Home Page
-![image of home](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/home.jpg)
+![image of splash](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-splash-page.png)
 ### Login Page
-![image of login](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Login.jpg)
+![image of login](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-login-page.jpg)
 ### Signup Page
-![image of signup](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/sign-up.jpg)
-### Spot Page
-![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/spot.jpg)
-![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/description.png)
-![image of spot](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Review-GoogleMaps.png)
-### Host Page
-![image of host](https://github.com/JackRadinger/Discord/blob/main/frontend/src/resources/Host.png)
+![image of signup](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-sign-up-page.jpg)
+### Home Page
+![image of home](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-home-page.png)
+### Direct Message Page
+![image of directmessages](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-direct-message-page.png)
+### Server Page
+![image of server](https://github.com/JackRadinger/Discord/blob/main/Wiki_Images/disvoice-server-page.png)
 
 # Structure
 ### Back End
