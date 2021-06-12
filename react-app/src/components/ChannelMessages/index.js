@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import './ChannelMessage.css'
 import socketUseEffect from '../utils/sockets'
 import * as activeReducer from '../../store/active'
+import Moment from 'react-moment';
 
 function ChannelMessages() {
     const user = useSelector(state => state.session.user);
@@ -98,7 +99,7 @@ function ChannelMessages() {
                             <div className='channel-message'>
                                 <div className='channel-message-user-date-container'>
                                     <h4 className='channel-message-username'>{message.sender.username}</h4>
-                                    <h6 className='channel-message-date'>{message.created_at}</h6>
+                                    <Moment className='channel-message-date' format="MMMM Do YYYY, h:mm:ss a">{message.created_at}</Moment>
                                 </div>
                                 <div className='user-message'>
                                     {message.body}

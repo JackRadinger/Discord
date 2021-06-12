@@ -10,6 +10,7 @@ import ChannelMessages from '../ChannelMessages/index';
 import ServerUsers from '../ServerUsers/index';
 import UserDMs from '../UserDMs/index'
 import socketUseEffect from '../utils/sockets'
+import Moment from 'react-moment';
 
 const DirectMessages = () => {
   const user = useSelector(state => state.session.user);
@@ -100,7 +101,7 @@ function sendMessage(body) {
                     <div className='channel-message'>
                       <div className='channel-message-user-date-container'>
                           <h4 className='channel-message-username'>{message.sender.username}</h4>
-                          <h6 className='channel-message-date'>{message.created_at}</h6>
+                          <Moment className='channel-message-date' format="MMMM Do YYYY, h:mm:ss a">{message.created_at}</Moment>
                       </div>
                       <div className='user-message'>
                           {message.body}
