@@ -10,6 +10,7 @@ import ChannelMessages from '../ChannelMessages/index';
 import ServerUsers from '../ServerUsers/index';
 import UserDMs from '../UserDMs/index'
 import socketUseEffect from '../utils/sockets'
+import Moment from 'react-moment';
 
 const DirectMessages = () => {
   const user = useSelector(state => state.session.user);
@@ -52,6 +53,10 @@ useEffect(socketUseEffect(
   conversation.id,
   recipientId
 ), [socket, conversation, messages]);
+
+const updateMessage = (e) => {
+  setMessage(e.target.value);
+};
 
 async function handleSubmit(e) {
     e.preventDefault()
@@ -96,7 +101,7 @@ function sendMessage(body) {
                     <div className='channel-message'>
                       <div className='channel-message-user-date-container'>
                           <h4 className='channel-message-username'>{message.sender.username}</h4>
-                          <h6 className='channel-message-date'>{message.created_at}</h6>
+                          <Moment className='channel-message-date' format="MMMM Do YYYY, h:mm:ss a">{message.created_at}</Moment>
                       </div>
                       <div className='user-message'>
                           {message.body}
@@ -120,7 +125,8 @@ function sendMessage(body) {
             <div className='channel-message-input-div'>
               <input
               className='channel-message-input'
-              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              onChange={updateMessage}
               >
               </input>
             </div>
