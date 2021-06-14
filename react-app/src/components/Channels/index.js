@@ -52,8 +52,8 @@ const Channels = ({server}) => {
     return <Redirect to="/login" />;
   }
 
-  function handleChannelClick(channel) {
-    dispatch(activeReducer.setActiveChannel(channel))
+  async function handleChannelClick(channel) {
+    await dispatch(activeReducer.setActiveChannel(channel))
     setActiveChannel(channel.id)
     history.push(`/channels/${server.id}/${channel.id}`)
   }

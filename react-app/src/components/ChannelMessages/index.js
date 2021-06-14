@@ -26,13 +26,13 @@ function ChannelMessages() {
     const messageDateObj = new Date(message.created_at + "Z");
 
     useEffect(() => {
+        console.log('UseEffect', messageContainer.current.scrollHeight)
         messageContainer.current.scroll({
-            top: messageContainer.current.scrollHeight,
-            behavior: 'auto'
+            top: messageContainer.current.scrollHeight + 10000
         });
         setMessages(channelMessages)
-
-    }, [messageContainer.current, channelMessages, socket, messages ])
+        console.log('here')
+    }, [messageContainer.current, channelMessages, socket])
 
     useEffect(() => {
         if (
@@ -40,13 +40,14 @@ function ChannelMessages() {
                 initialMessages || messages[messages.length - 1].sender.id === user.id)
 
         ) {
+            console.log('here2')
             messageContainer.current.scroll({
                 top: messageContainer.current.scrollHeight,
                 behavior: 'auto'
             });
         }
         setInitialMessages(false)
-    }, [messages, messageContainer.current])
+    }, [messages, messageContainer.current, initialMessages])
 
     useEffect(socketUseEffect(
         "public",
@@ -77,6 +78,12 @@ function ChannelMessages() {
 
     if (!user) {
     return null;
+    }
+
+    if(messageContainer.current) {
+        messageContainer.current.scroll({
+            top: messageContainer.current.scrollHeight
+        });
     }
 
     return (
